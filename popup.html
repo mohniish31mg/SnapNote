@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #ebebeb;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        background: #a8a8a8;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        width: 390px;
+        border-radius: 30px;
+        background-color: #f9f9f9;
+        margin: 0;
+    }
+
+    .pdfContainer {
+        padding: 0px 10px;
+        background-color: #525659;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 24px;
+        color: #333333;
+    }
+
+    /* #title{
+        font-size: 20px;
+        color: #333333;
+        font-family: "Roboto Condensed", sans-serif;
+    } */
+    .pdfTopBar {
+        height: 50px;
+        background-color: #323639;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 10px;
+        position: sticky;
+        top: 0;
+    }
+
+    .pdfTopBar div {
+        display: flex;
+        align-items: center;
+    }
+
+    .btn {
+        background-color: transparent;
+        outline: none;
+        border: none;
+        margin: 5px 0 0 0;
+        cursor: pointer;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1/1;
+    }
+
+    .btn:hover {
+        background-color: #525659;
+    }
+
+    .displayContainer {
+        margin: auto;
+        padding: 30px 20px;
+        max-width: 280px;
+        background-color: white;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background-color: white;
+    }
+
+    .button {
+        height: 40px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .button:active {
+        scale: 0.95;
+    }
+
+    .image-container {
+        margin-bottom: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .image-container img {
+        width: 100%;
+        display: block;
+    }
+
+    .note {
+        font-size: 15px;
+        color: #606060;
+        margin-top: 8px;
+    }
+
+    .help {
+        font-family: "Roboto Condensed", sans-serif;
+        font-weight: 500;
+        color: white;
+        font-size: medium;
+    }
+
+    input {
+        width: 100px;
+    }
+
+    #optionsButton {
+        position: relative;
+    }
+
+    #ButtonContainer {
+        position: absolute;
+        display: none;
+        top: 100%;
+        flex-direction: column;
+        background-color: #202124;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: small;
+        gap: 10px;
+        right: 0%;
+        align-items: start;
+    }
+    #ButtonContainer input{
+        background-color: #00000080;
+        border: none;
+        outline: none;
+        padding: 5px;
+        color: white;
+    }
+    .spanbtn:active{
+        scale:0.95;
+    }
+</style>
+
+<body>
+    <div class="pdfTopBar">
+        <div class="help">FrameTagger</div>
+        <div>
+            <button class="btn" id="downloadbtns">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" fill="#ffffff" version="1.1"
+                    viewBox="-5.0 -10.0 110.0 135.0">
+                    <g>
+                        <path
+                            d="m90.625 87.5h-81.25c-1.7266 0-3.125 1.3984-3.125 3.125s1.3984 3.125 3.125 3.125h81.25c1.7266 0 3.125-1.3984 3.125-3.125s-1.3984-3.125-3.125-3.125z" />
+                        <path
+                            d="m65.043 6.25h-30.09c-1.7266 0-3.125 1.3984-3.125 3.125v34.82h-13.078c-1.2422 0-2.3633 0.73438-2.8633 1.8711-0.49609 1.1328-0.27344 2.4609 0.56641 3.3711l31.25 33.93c0.58984 0.64062 1.4258 1.0078 2.2969 1.0078s1.707-0.36719 2.2969-1.0078l31.25-33.93c0.83984-0.91406 1.0625-2.2344 0.56641-3.3711-0.5-1.1367-1.6211-1.8711-2.8633-1.8711h-13.082v-34.82c0-1.7266-1.3945-3.125-3.125-3.125z" />
+                    </g>
+                </svg>
+            </button>
+            <button class="btn" id="optionsButton">
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" fill="#ffffff" version="1.1"
+                    viewBox="0 0 1024 1280" x="0px" y="0px">
+                    <path
+                        d="M640 832c0 70.4-57.6 128-128 128s-128-57.6-128-128 57.6-128 128-128 128 57.6 128 128zM640 512c0 70.4-57.6 128-128 128s-128-57.6-128-128 57.6-128 128-128 128 57.6 128 128zM640 192c0 70.4-57.6 128-128 128s-128-57.6-128-128 57.6-128 128-128 128 57.6 128 128z" />
+                </svg>
+                <div id="ButtonContainer">
+                    <input type="text" placeholder="Paste Video Id" id="mergeInput">
+                    <span class="spanbtn" id="MergeFilesButton">Merge Files</span>
+                    <span class="spanbtn" id="CopyVideoIdBtn">Copy Video Id</spa>
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="pdfContainer">
+        <div class="displayContainer">
+            <div id="container"></div>
+        </div>
+    </div>
+</body>
+<script src="popup.js"></script>
+<script src="htmltopdf.js"></script>
+<script src="jquery.js"></script>
+<script src="htmltocanvas.js"></script>
+<script src="jspdf.js"></script>
+
+</html>
